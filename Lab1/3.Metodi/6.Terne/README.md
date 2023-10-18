@@ -11,11 +11,11 @@ Oltre al metodo `main()`, devono essere definiti ed utilizzati almeno i seguenti
 ##### Esempio d'esecuzione:
  
 ```text
-$ java TernePitagoriche 10
+$ java Terne 10
 Terne pitagoriche:
 (3, 4, 5)
 
-$ java TernePitagoriche 20
+$ java Terne 20
 Terne pitagoriche:
 (3, 4, 5)
 (5, 12, 13)

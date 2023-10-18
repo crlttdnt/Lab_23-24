@@ -1,16 +1,21 @@
 public class Palindroma {
-	public static void main(String[] args) {
+    
+    public static void main(String[] args) {
+        
+        String s = args[0];
 
-		String s = args[0];
-		int n = s.length();
+        boolean palindroma = true;
 
-		for(int i = 0; i < n/2; i++) {
-			if(s.charAt(i) != s.charAt(n-i-1)) {
-				System.out.println("Non Palindroma");
-				return;
-			}
-		}
+        for (int i = 0; i <= s.length()/2; i++) {
+           if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+                 palindroma = false;
+                 break;
+           }
+           
+        }
 
-		System.out.println("Palindroma");
-	}
+        if (palindroma == true)
+            System.out.println("Palindroma");
+        else System.out.println("Non palindroma");
+    }
 }

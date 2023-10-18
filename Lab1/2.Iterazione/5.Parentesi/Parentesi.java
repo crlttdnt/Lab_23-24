@@ -1,23 +1,30 @@
 public class Parentesi {
-	public static void main(String[] args) {
-		String s = args[0];
+  //se scrivi main sto coso sotto va da solo
+    public static void main(String[] args) {
+       
+        //String parentesi = args[0];
+        int contAperte = 0;
+        int contChiuse = 0;
 
-		int counter = 0;
+        for (int i = 0; i < args[0].length(); i++) {
+            if (args[0].charAt(i) == '[')  
+                contAperte++;
+            //charAt(i) sarebbe in posizione i
+            
+            if (args[0].charAt(i) == ']')
+                contChiuse++;
 
-		for (int i = 0; i < s.length(); i++) {
-			if(s.charAt(i) == '[') {
-				counter++;
-			} else if(counter > 0) {
-				counter--;
-			} else {
-				System.out.println("Non bilanciate");
-				System.exit(0);
-			}
-		}
+            if (contChiuse < contAperte) {
+                break;
+            }
+        }
 
-		if(counter != 0)
-			System.out.println("Non bilanciate");
-		else
-			System.out.println("Bilanciate");
-	}
+            if (contAperte != contChiuse) {
+                System.out.println("Non bilanciate");
+            } else {
+                System.out.println("Bilanciate");
+            }
+
+
+    } 
 }
