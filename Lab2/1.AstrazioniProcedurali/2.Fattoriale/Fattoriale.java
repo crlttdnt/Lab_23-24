@@ -1,4 +1,3 @@
-//grazie a Gabriele Nicchi per la base della classe
 import java.util.ArrayList;
 
 public class Fattoriale {

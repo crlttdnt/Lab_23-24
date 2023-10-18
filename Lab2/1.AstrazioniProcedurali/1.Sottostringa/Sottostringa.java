@@ -5,12 +5,13 @@ public class Sottostringa {
 
     public static boolean sottoStringa (String testo, String parola) {
     // EFFECTS: restituisce `true` se `parola` è sottostringa di `testo` e `false` altrimenti.
-        
+            testo = testo.toLowerCase();
             if (testo.contains(parola)) 
                 return true;
             else 
                 return false;
     }
+
 
 
     public static void main(String[] args) {
