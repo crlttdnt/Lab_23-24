@@ -39,7 +39,7 @@ public class Famiglia {
     @Override
     public String toString() {
     /* ridefinisce il metodo toString del supertipo Object e restituisce una stringa contenente le informazioni della famiglia; */
-        return "Famiglia []";
+        return dimensione + " persone con reddito complessivo di " + reddito;
     }
     
 
@@ -47,27 +47,53 @@ public class Famiglia {
     /*
     legge da riga di comando due numeri che definiscono rispettivamente il costo medio di vitto e di alloggio. Poi, da standard input dovrà leggere una serie di righe di testo costituite da reddito e dimensione di diverse famiglie, fermando la lettura quando l'utente preme la combinazione dei tasti CTRL+D. Dopo la lettura, visualizzare le famiglie che sono sotto la soglia di povertà. */ 
 
-        
-        ArrayList<Famiglia> famiglie = new ArrayList<>();
+        double vitto = 0, alloggio = 0;
 
-        double vitto = Double.parseDouble(args[0]);
-        double alloggio = Double.parseDouble(args[1]);
+        ArrayList<Famiglia> famiglie = new ArrayList<>();
+       
+        try {
+            vitto = Double.parseDouble(args[0]);
+            alloggio = Double.parseDouble(args[1]);
+        } catch (NumberFormatException e) {
+            System.out.println("Parametri non validi");
+        }
+       
 
         Scanner s = new Scanner(System.in);
 
-        int contPoveri;
+        int contPoveri = 0;
 
+        System.out.println("Inserisci il reddito e la dimensione di una famiglia (Ctrl+D per terminare la lettura)");
         while (s.hasNext()) {
-
-            System.out.println("Inserisci il reddito e la dimensione di una famiglia (Ctrl+D per terminare la lettura)");
-
-            famiglie.add(new Famiglia(s.nextDouble(), s.nextDouble()));
-
-            if (sottoSogliaPoverta(alloggio, vitto)) {
-                contPoveri++;
-                //
+            try {
+                famiglie.add(new Famiglia(s.nextDouble(), s.nextInt()));
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
             }
             
+            System.out.println("Inserisci il reddito e la dimensione di una famiglia (Ctrl+D per terminare la lettura)");
+            
+        }
+
+        for (Famiglia famigliaSingola : famiglie) {
+            if (famigliaSingola.sottoSogliaPoverta(alloggio, vitto))
+                contPoveri++;
+        }
+
+        System.out.println();
+        System.out.println(contPoveri + " famiglie sotto la soglia di poverta:");
+
+        int cont = 1;
+
+        try {
+            for (Famiglia famigliaSingola : famiglie) {
+                if (famigliaSingola.sottoSogliaPoverta(alloggio, vitto)) {
+                    System.out.println("Famiglia " + cont + ": " + famigliaSingola);
+                }
+                cont++;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println(e.getMessage());
         }
 
 
