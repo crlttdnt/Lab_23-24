@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.function.ToDoubleBiFunction;
 
 public class Punto {
@@ -76,6 +78,43 @@ public class Punto {
     }
 
     public static void main(String[] args) {
-        //
+        System.out.println("Inserire i punti (<x> <y>)");
+        System.out.println("Terminare la lettura con CTRL+D");
+
+        Scanner s = new Scanner(System.in);
+        
+        ArrayList<Punto> punti = new ArrayList<>();
+
+        double maxDistanza = 0;
+        Punto p1 = null, p2 = null;
+
+        while (s.hasNext()) {
+            try {
+                punti.add(new Punto(s.nextDouble(), s.nextDouble()));
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+                System.exit(1);
+            }
+        }
+
+        for (int i = 0; i < punti.size() - 1; i++) {
+            for (int j = i + 1; j < punti.size(); j++) {
+                try {
+                    double distanza = punti.get(i).distanza(punti.get(j));
+                    if (distanza > maxDistanza) {
+                        maxDistanza = distanza;
+                        p1 = punti.get(i);
+                        p2 = punti.get(j);
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } 
+
+        System.out.println();
+        System.out.println("I punti piu distanti sono:");
+        System.out.println(p1);
+        System.out.println(p2);
     }
 }
