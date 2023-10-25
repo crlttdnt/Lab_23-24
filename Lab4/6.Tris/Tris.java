@@ -92,7 +92,7 @@ public class Tris {
        }
 
        int i = 0;
-            for (int j = 0; j < tabellone.length; j++) {
+       int j = 0;
                 if (this.tabellone[i][j] == this.tabellone[i][j + 1] && this.tabellone[i][j] == this.tabellone[i][j + 2]) {
                     if (this.tabellone[i][j] == this.turno)
                         return true;
@@ -102,7 +102,7 @@ public class Tris {
                      if (this.tabellone[j][i] == this.turno)
                         return true;
                 }
-            }
+            
        
        return false;
     }
