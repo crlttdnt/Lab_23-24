@@ -23,8 +23,17 @@ public class Sheep implements Cloneable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         //da finire;
-        Sheep nuovaPecora = (Sheep) this.clone();
+        Sheep nuovaPecora = (Sheep) super.clone();
+        //DEEP clone di cromosomi
         
+        ArrayList<String> altriCromosomi = new ArrayList<>();
+
+        for (String cromosoma : this.cromosomi) {
+            altriCromosomi.add(cromosoma);            
+        }
+
+        nuovaPecora.cromosomi = altriCromosomi;
+
         return nuovaPecora;
         
     }
@@ -111,6 +120,7 @@ public class Sheep implements Cloneable {
 
         Sheep pecora2 = (Sheep) pecora1.clone();
    
+        System.out.println();
         System.out.println("Ho creato un clone di " + pecora1.nome + ".");
 
         UguaglianzaConStampa(pecora1, pecora2);
