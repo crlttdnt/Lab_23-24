@@ -92,7 +92,6 @@ public class Sheep implements Cloneable {
     }
 
 
-
     public static void main(String[] args) throws CloneNotSupportedException {
         Sheep pecora1 = null;
 
