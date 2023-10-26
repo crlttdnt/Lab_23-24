@@ -35,7 +35,7 @@ public class Tris {
 
         this.tabellone[x-1][y-1] = this.turno;
         this.numeroMosse ++;
-        cambiaTurno();
+        
     }
 
     @Override
@@ -91,19 +91,18 @@ public class Tris {
                 return true;
        }
 
-       int i = 0;
-       int j = 0;
-                if (this.tabellone[i][j] == this.tabellone[i][j + 1] && this.tabellone[i][j] == this.tabellone[i][j + 2]) {
-                    if (this.tabellone[i][j] == this.turno)
+       for (int i = 0; i < tabellone.length; i++) {
+            if (this.tabellone[i][0] == this.tabellone[i][1] && this.tabellone[i][0] == this.tabellone[i][2]) {
+                    if (this.tabellone[i][0] == this.turno)
                         return true;
                 }
 
-                if (this.tabellone[j][i] == this.tabellone[j + 1][i] && this.tabellone[j][i] == this.tabellone[j + 2][i]) {
-                     if (this.tabellone[j][i] == this.turno)
+                if (this.tabellone[0][i] == this.tabellone[1][i] && this.tabellone[0][i] == this.tabellone[2][i]) {
+                     if (this.tabellone[0][i] == this.turno)
                         return true;
                 }
-            
-       
+       }
+                
        return false;
     }
 
@@ -111,17 +110,17 @@ public class Tris {
     public static void main(String[] args) {
         Tris tris = new Tris();
         Scanner s = new Scanner(System.in);
-        System.out.println("Mossa di " + tris.turno);
-        System.out.println("Inserisci: x y");
         while (!tris.terminato()) {
+           
             System.out.println("Mossa di " + tris.turno);
             System.out.println("Inserisci: x y");
             tris.mossa(s.nextInt(), s.nextInt());
             System.out.println(tris);
             if (tris.vittoria()) {
-                System.out.println("Ha vinto" + tris.turno);
+                System.out.println("Ha vinto " + tris.turno);
                 System.exit(1);
             }
+            tris.cambiaTurno(); //tolto da mossa!!
             if (tris.terminato()) {
                 System.out.println("Partita terminata, nessuno ha vinto");
                 System.exit(1);
