@@ -121,13 +121,11 @@ public class Tris {
                 System.exit(1);
             }
             tris.cambiaTurno(); //tolto da mossa!!
-            if (tris.terminato()) {
-                System.out.println("Partita terminata, nessuno ha vinto");
-                System.exit(1);
-            }
+                
         }
 
-        
+        System.out.println("Partita terminata, nessuno ha vinto");
+        System.exit(1);
 
     }
 
