@@ -22,8 +22,8 @@ public class Evento {
             throw new IllegalArgumentException("nome non valido");
         }
 
-        if (date == null) {
-            throw new DateFormatException("data non valida");
+        if (data == null) {
+            throw new DataFormatException("data non valida");
         }
 
         this.data = data;
@@ -83,26 +83,48 @@ public class Evento {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        String data,nome;
+        String nome;
+        Date data;
         System.out.println("Inserisci data del primo evento");
         data = s.next();
         System.out.println("Inserisci nome del primo evento");
         nome = s.next();
         try {
            Evento evento1 = new Evento(data, nome); 
-        } catch (DateFormatException, IllegalArgumentException e) {
+        } catch (DataFormatException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } 
 
-        System.out.println("Inserisci data del primo evento");
+        System.out.println("Inserisci data del secondo evento");
         data = s.next();
-        System.out.println("Inserisci nome del primo evento");
+        System.out.println("Inserisci nome del secondo evento");
         nome = s.next();
 
+        try {
+           Evento evento2 = new Evento(data, nome); 
+        } catch (DataFormatException | IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } 
 
+        if (evento1.equals(evento2)) {
+            System.out.println("I due eventi sono uguali");
+       } else {
+            System.out.println("I due eventi sono diversi");
+       }
+
+       int n;
+       n = Integer.parseInt(s.next());
+       Evento eventocopiato = new Evento();
+       try {
+           eventocopiato = evento1.copiaEvento(n);
+       } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+       }
+       System.out.println("Evento copiato: " + eventocopiato);
     }
-
-    
-
-    
 }
+
+    
+
+    
+
