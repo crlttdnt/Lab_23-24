@@ -98,7 +98,7 @@ public class Evento {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-       
+        System.out.println("Inserisci data del primo evento");
         String[] pieces = s.next().split("/");
 
         Date data1 = new Date(Integer.parseInt(pieces[2]) - 1900,
@@ -133,7 +133,7 @@ public class Evento {
         /*
         Evento evento1 = new Evento(data1, nome1);
         Evento evento2 = new Evento(data2, nome2);   
-*/
+        */
 
 
 
@@ -143,7 +143,8 @@ public class Evento {
             System.out.println("I due eventi sono diversi");
        }
 
-       int n;
+
+        int n;
        n = Integer.parseInt(s.next());
        Evento eventocopiato = new Evento(Date(1/1/01),"0");
        try {
@@ -151,7 +152,8 @@ public class Evento {
        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
        }
-       System.out.println("Evento copiato: " + eventocopiato);
+       System.out.println("Evento copiato: " + eventocopiato); 
+       
     }
 }
 
