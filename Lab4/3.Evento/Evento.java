@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.DataFormatException;
 
+import javax.swing.text.DateFormatter;
+
 public class Evento {
     //OVERVIEW: classe Evento che modelli un evento di un calendario, definito da una data specificata e dal suo nome
 
@@ -42,6 +44,19 @@ public class Evento {
         return nome;
     }
 
+    @Override
+    public Object clone() {
+        Evento nuovo = null;
+        try {
+            nuovo = (Evento) super.clone();
+        } catch (CloneNotSupportedException e) {
+            nuovo = new Evento(data, nome);
+        }
+        // Eventuali attributi mutabili devono essere clonati
+        nuovo.data = (Date) data.clone();
+
+        return nuovo;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -83,28 +98,44 @@ public class Evento {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        String nome;
-        Date data;
-        System.out.println("Inserisci data del primo evento");
-        data = s.next();
+       
+        String[] pieces = s.next().split("/");
+
+        Date data1 = new Date(Integer.parseInt(pieces[2]) - 1900,
+                Integer.parseInt(pieces[1]),
+                Integer.parseInt(pieces[0]));
+
         System.out.println("Inserisci nome del primo evento");
-        nome = s.next();
-        try {
-           Evento evento1 = new Evento(data, nome); 
-        } catch (DataFormatException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } 
+        String nome1 = s.next();
 
         System.out.println("Inserisci data del secondo evento");
-        data = s.next();
+        pieces = s.next().split("/");
+
+        Date data2 = new Date(Integer.parseInt(pieces[2]) - 1900,
+                Integer.parseInt(pieces[1]),
+                Integer.parseInt(pieces[0]));
+
         System.out.println("Inserisci nome del secondo evento");
-        nome = s.next();
+        String nome2 = s.next();
 
         try {
-           Evento evento2 = new Evento(data, nome); 
+           Evento evento1 = new Evento(data1, nome1); 
         } catch (DataFormatException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } 
+        
+        try {
+           Evento evento2 = new Evento(data2, nome2); 
+        } catch (DataFormatException | IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } 
+       
+        /*
+        Evento evento1 = new Evento(data1, nome1);
+        Evento evento2 = new Evento(data2, nome2);   
+*/
+
+
 
         if (evento1.equals(evento2)) {
             System.out.println("I due eventi sono uguali");
@@ -114,7 +145,7 @@ public class Evento {
 
        int n;
        n = Integer.parseInt(s.next());
-       Evento eventocopiato = new Evento();
+       Evento eventocopiato = new Evento(Date(1/1/01),"0");
        try {
            eventocopiato = evento1.copiaEvento(n);
        } catch (IllegalArgumentException e) {
