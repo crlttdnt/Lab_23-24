@@ -4,26 +4,22 @@ public class Carta implements Comparable<Carta> {
     
     //attributi
     private final int num;
-    private final String seme;
+    private final int seme; //C = 1, Q= 2, F= 3, P= 4;
 
     //costruttori
-    public Carta(int num, String seme) throws IllegalArgumentException {
+    public Carta(int num, int seme) throws IllegalArgumentException {
         //modifies: this
         //EFFECTS: istanzia una carta
         //          se seme == null o vuoti lancia IllegalArgumentException
         //          se num è fuori range (<1 o > 13) lancia IllegalArgumentException
-        //          se seme è fuori range(non è C, Q, F, P) lancia IllegalArgumentException
-        
-        if (seme == null || seme == "") {
-            throw new IllegalArgumentException("Num non può essere null");
-        }
+        //          se seme è fuori range(non è 1,2,3,4) lancia IllegalArgumentException       
 
-        if (num <1 || num > 13) {
+        if (num < 1 || num > 13) {
             throw new IllegalArgumentException("Num fuori range");
         }
 
-        if (seme != "P" || seme != "C" || seme != "Q" || seme != "F")
-            throw new IllegalArgumentException("Seme deve essere: C, Q, F, P");
+        if (seme < 1 || seme > 4)
+            throw new IllegalArgumentException("Seme deve essere: 1,2,3,4");
 
         this.num = num;
         this.seme = seme;
@@ -32,23 +28,62 @@ public class Carta implements Comparable<Carta> {
 
      //metodi
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        carta other = (carta) obj;
-        if (num != other.num)
-            return false;
-        if (seme == null) {
-            if (other.seme != null)
-                return false;
-        } else if (!seme.equals(other.seme))
-            return false;
-        return true;
+    public int compareTo(Carta o) {
+       //1 se this > O, 0 se uguali e -1 se this<O
+       //ordina le carte
+       if (this.num < o.num) {
+            return -1;
+       }
+        if (this.num > o.num) {
+            return 1;
+       }
+
+       if (this.seme < o.seme) {
+            return 1;
+       }
+
+       if (this.seme > o.seme) {
+            return -1;
+       }
+
+       return 0; 
     }
+
+    public int getNum() {
+        return num;
+    }
+
+    public int getSeme() {
+        return seme;
+    }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        switch (this.seme) {
+            case 1:
+                ret = "C";
+                break;
+        
+            case 2:
+                ret = "Q";
+                break;
+
+            case 3:
+                ret = "F";
+                break;
+        
+            case 4:
+                ret = "P"; 
+                break;   
+        }
+        return "Carta: " + num + " " + ret;
+    }
+
+
+    
+
+    
 
 
 
