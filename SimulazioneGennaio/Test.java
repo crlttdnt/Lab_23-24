@@ -6,14 +6,14 @@ public class Test {
         Scanner s = new Scanner(System.in);
 
         while(s.hasNextLine()) {
-            ArrayList<Tratta> percorsi = new ArrayList<>();
+            ArrayList<Percorso> percorsi = new ArrayList<>();
             
             Percorso p = new Percorso();
             
             
             String[] str = s.nextLine().split(" ");
 
-            Tratta tratta = null;
+            //Tratta tratta = null;
 
             try {
                 switch (str[0]) {

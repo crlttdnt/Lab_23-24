@@ -1,4 +1,4 @@
-public abstract class Tratta {
+public abstract class Tratta implements Comparable<Tratta>{
     //OVERVIEW: classe astratta immutabile: tratta di viaggio
 
     //attributi
@@ -19,7 +19,7 @@ public abstract class Tratta {
             throw new NullPointerException("Origine o Destinazione nulla");
         if (origine.equals("") || destinazione.equals(""))
             throw new IllegalArgumentException("Origine o Destinazione vuota");
-        if (lunghezza <= 0 || velocita <= 0) 
+        if (lunghezza <= 0 || vel <= 0) 
             throw new IllegalArgumentException("Lunghezza o Velocita non valide");
         this.origine = origine;
         this.destinazione = destinazione;
@@ -47,7 +47,7 @@ public abstract class Tratta {
 
     @Override
     public String toString() {
-        return "Tratta tra " + tratta.getOrigine + " e " + tratta.getDestinazione + "; lunghezza: " + tratta.getLunghezza + ", velocità: " + tratta.getVel;
+        return "Tratta tra " + getOrigine() + " e " + getDestinazione() + "; lunghezza: " + getLunghezza() + ", velocità: " + getVel();
     }
     //Tratta tra Milano e Bergamo; lunghezza: 56.0, velocità: 80.0
 
@@ -66,7 +66,7 @@ public abstract class Tratta {
 
     @Override
     public int compareTo(Tratta o) {
-        return Double.compare(this.getDurata(), o.getDurata());
+        return Double.compare(this.calcolaDurata(), o.calcolaDurata());
     }
 
     

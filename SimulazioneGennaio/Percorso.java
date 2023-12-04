@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.Iterator;
 
 public class Percorso implements Iterable<Tratta> {
     //OVERVIEW: Percorso costituito da una sequenza di Tratte, La prima tratta parte da un luogo d'origine e arriva al punto di partenza della tratta successiva e così via fino all'ultima tratta.
@@ -10,7 +9,7 @@ public class Percorso implements Iterable<Tratta> {
 
 
     //costruttori
-    public Percorso(ArrayList<Tratta> percorso) {
+    public Percorso() {
         //EFFECTS: istanzia un percorso vuoto.
 
     }
@@ -87,7 +86,7 @@ public class Percorso implements Iterable<Tratta> {
 
     @Override
     public String toString() {
-        return "Percorso (durata: " + tratte.sommaDurate + ", co2: " + tratte.sommaCO2() + ")";
+        return "Percorso (durata: " + tratte.sommaDurate() + ", co2: " + tratte.sommaCO2() + ")";
     }
     //Percorso (durata: 1.7200000000000002, co2: 1410.675)
 
@@ -98,7 +97,8 @@ public class Percorso implements Iterable<Tratta> {
     //EFFECTS: Restituire un Iteratore delle tratte del Percorso
         
         return new Iterator<Tratta>() {
-            Iterator<Tratta> i = tratte.iterator;
+
+            Iterator<Tratta> i = tratte.iterator();
 
             @Override
             public boolean hasNext() {
@@ -106,7 +106,7 @@ public class Percorso implements Iterable<Tratta> {
             }
 
             @Override
-            public boolean next() {
+            public Tratta next() {
                 return i.next();
             }
         };
@@ -114,9 +114,7 @@ public class Percorso implements Iterable<Tratta> {
             
     }
     
-    
-    
-    }
+}
     
 
    
