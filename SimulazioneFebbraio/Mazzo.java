@@ -60,12 +60,6 @@ public class Mazzo {
 
     }
 
-
-
-
-
-
-
     @Override
     public boolean repOk() {
         if (carta == null) {
@@ -81,7 +75,23 @@ public class Mazzo {
         return true;
     }
 
+/* 
+ Fornire le funzionalita' di un iteratore standalone di carte, ovvero:
+Verificare se vi sono ancora delle carte nel mazzo
+Estrarre e restituire una carta dal mazzo (togliendola dal mazzo)
+*/
+
+
+
+
+
+
 }
+
+
+
+
+
 
 
 //interfaccia non ha attributi

@@ -7,3 +7,6 @@ public class CardNotValidException extends Exception {
         super(s);
     }
 }
+
+//se unchecked è extends RuntimeException
+//se checked solo extends Exception 
