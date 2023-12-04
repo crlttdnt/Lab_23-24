@@ -39,11 +39,11 @@ public class Carta implements Comparable<Carta> {
        }
 
        if (this.seme < o.seme) {
-            return 1;
+            return -1;
        }
 
        if (this.seme > o.seme) {
-            return -1;
+            return 1;
        }
 
        return 0; 
@@ -78,6 +78,22 @@ public class Carta implements Comparable<Carta> {
                 break;   
         }
         return "Carta: " + num + " " + ret;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Carta other = (Carta) obj;
+        if (num != other.num)
+            return false;
+        if (seme != other.seme)
+            return false;
+        return true;
     }
 
 
