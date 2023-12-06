@@ -1,4 +1,4 @@
-public class AdCampaign implements Comparable {
+public abstract class AdCampaign implements Comparable {
     //OVERVIEW: definisce una campagna pubblicitaria, identificata da un nome.
 
     //attributi
@@ -49,6 +49,9 @@ public class AdCampaign implements Comparable {
         if (this.valPerformance > o.valPerformance)
             return 1;
     }
+
+
+    public abstract void update() throws CampaignClosedException;
     
 
 /*
