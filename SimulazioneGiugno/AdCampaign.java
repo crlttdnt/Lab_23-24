@@ -52,6 +52,10 @@ public abstract class AdCampaign implements Comparable {
 
 
     public abstract void update() throws CampaignClosedException;
+
+    public void close() {
+        this.aperta = false;
+    }
     
 
 /*
