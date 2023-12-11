@@ -68,7 +68,7 @@ public class CompanyAds implements Iterable<AdCampaign> {
         String ret = "";
         ret +=  "Campagne di " + nomeAzienda + ":\n";
         for (AdCampaign c : azienda) {
-            System.out.println(c);
+            ret += c;
         }
         return ret;
     }
