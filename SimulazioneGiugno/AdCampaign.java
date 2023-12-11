@@ -1,4 +1,4 @@
-public abstract class AdCampaign implements Comparable {
+public abstract class AdCampaign implements Comparable<AdCampaign> {
     //OVERVIEW: definisce una campagna pubblicitaria, identificata da un nome.
 
     //attributi
@@ -8,13 +8,13 @@ public abstract class AdCampaign implements Comparable {
 
 
     //costruttori
-     public AdCampaign(String nome, double valPerformance, boolean aperta) throws NullPointerException, IllegalArgumentException {
+    public AdCampaign(String nome, boolean aperta) throws NullPointerException, IllegalArgumentException, CampaignExistsException {
         //EFFECTS: istanzia un AdCampaign, una campagna viene creata aperta
         //      lancia NullPointerException se nome vuoto o null
         //      lancia IllegalArgumentException se valPerformance < 0 o > 1 
         
         this.nome = nome;
-        this.valPerformance = valPerformance;
+       // this.valPerformance = valPerformance;
         this.aperta = true;
 
         assert repOk();
@@ -22,8 +22,8 @@ public abstract class AdCampaign implements Comparable {
 
 
     //metodi:
-    @Override
-    public int compareTo(Object o) {
+    //@Override
+    public boolean equals(AdCampaign o) {
         // Due campagne sono considerate uguali se hanno lo stesso nome
         if (this.nome == o.nome) {
             return true;
@@ -31,7 +31,7 @@ public abstract class AdCampaign implements Comparable {
         return false;
     }
 
-    @Override
+    //@Override
     public boolean repOk() {
         if (valPerformance < 0 || valPerformance > 1) {
             return false;
@@ -42,29 +42,39 @@ public abstract class AdCampaign implements Comparable {
 
     //Le campagne possono essere naturalmente ordinate per il loro valore di performance
     @Override
-    public int compare(Object o) {
+    public int compareTo(AdCampaign o) {
         if (this.valPerformance < o.valPerformance) 
             return -1;
         
         if (this.valPerformance > o.valPerformance)
             return 1;
+
+        return 0;
     }
 
 
-    public abstract void update() throws CampaignClosedException;
+    public abstract void update(double d1, double d2) throws CampaignClosedException;
 
     public void close() {
         this.aperta = false;
     }
     
 
-/*
+
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        String ret = "";
+        //WebRestyle name: FontBluSfondoGiallo performance: 0.5659885237350026
+        if (this.nome.equals("WebRestyle")) {
+            ret += "WebRestyle name: ";
+        } else if (this.nome.equals("Social")) {
+            ret += "Social name: ";
+        }
+        ret += this.nome + " " + "performance: " + this.valPerformance;
+
+        return ret;
     }
- */
+ 
 
 
     public String getNome() {

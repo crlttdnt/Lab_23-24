@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CompanyAds implements Iterable<AdCampaign> {
     //OVERVIEW:indica un'azienda, identificata dal nome, e le sue campagne pubblicitarie
@@ -13,7 +14,7 @@ public class CompanyAds implements Iterable<AdCampaign> {
     
 
     //costruttori
-    public CompanyAds(String nomeAzienda, ArrayList<AdCampaign> azienda) {
+    public CompanyAds(String nomeAzienda) {
         this.nomeAzienda = nomeAzienda;
         this.azienda = azienda;
     }
@@ -21,14 +22,14 @@ public class CompanyAds implements Iterable<AdCampaign> {
 
     //metodi
     public void inserisciCampagna(AdCampaign c) throws CampaignExistsException {
-        if (this.contais(c)) {
+        if (azienda.contains(c)) {
             throw new CampaignExistsException("Campagna gia inserita");
         }
 
-        this.add(c);
+        azienda.add(c);
     }
 
-    public ArrayList<AdCampaign> ordinaPerPerformace() {
+    public ArrayList<AdCampaign> ordinaPerPerformance() {
         //modifies: this
         //effects: definisce l'ordine naturale delle campagne per performance
         ArrayList<AdCampaign> aziendaSorted = new ArrayList<>(azienda);
@@ -44,16 +45,16 @@ public class CompanyAds implements Iterable<AdCampaign> {
         
         return new Iterator<AdCampaign>() {
 
-            ArrayList<AdCampaign> aziendaSorted = azienda.ordinaPerPerformace();
+            ArrayList<AdCampaign> aziendaSorted = CompanyAds.this.ordinaPerPerformance();
             Iterator<AdCampaign> i = aziendaSorted.iterator();
 
-            @Override
+           // @Override
             public boolean hasNext() {
                 return i.hasNext();
             }
 
-            @Override
-            public Tratta next() {
+           // @Override
+            public AdCampaign next() {
                 return i.next();
             }
         };
@@ -61,6 +62,20 @@ public class CompanyAds implements Iterable<AdCampaign> {
             
     }
 
+
+    @Override
+    public String toString() {
+        String ret = "";
+        ret +=  "Campagne di " + nomeAzienda + ":\n";
+        for (AdCampaign c : azienda) {
+            System.out.println(c);
+        }
+        return ret;
+    }
+    
+
+
+    
 
 
 }
